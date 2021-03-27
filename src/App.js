@@ -4,12 +4,12 @@ import CurrentWeather from './components/CurrentWeather'
 import Footer from './components/Footer'
 
 function App() {
-  const accessKey = process.env.REACT_APP_API_KEY
-  const [city, setCity] = useState('Lincoln')
-  const [state, setState] = useState('Nebraska')
-  const [currentWeather, setCurrentWeather] = useState([])
-  const [updateCitySearch, setUpdateCitySearch] = useState('')
-  const [updateStateSearch, setUpdateStateSearch] = useState('')
+  const accessKey = process.env.REACT_APP_API_KEY;
+  const [city, setCity] = useState('Lincoln');
+  const [state, setState] = useState('Nebraska');
+  const [currentWeather, setCurrentWeather] = useState([]);
+  const [updateCitySearch, setUpdateCitySearch] = useState('');
+  const [updateStateSearch, setUpdateStateSearch] = useState('');
 
 
   const weatherDataLink = `http://api.weatherstack.com/forecast?access_key=${accessKey}&query=${city},${state}&units=f`
