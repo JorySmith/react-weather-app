@@ -9,8 +9,6 @@ const CurrentWeather = ({ city, state, currentWeather }) => {
       <p>Cloud Cover: {currentWeather.cloudcover}%</p>
       <p>Wind Speed: {currentWeather.wind_speed} mph</p>
       <p>Humidity: {currentWeather.humidity}%</p>
-
-
     </div>
   )
 }
