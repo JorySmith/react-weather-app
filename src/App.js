@@ -5,41 +5,34 @@ import Footer from './components/Footer'
 
 function App() {
   const accessKey = process.env.REACT_APP_API_KEY;
-  const [city, setCity] = useState('Lincoln');
-  const [state, setState] = useState('Nebraska');
   const [currentWeather, setCurrentWeather] = useState([]);
-  const [updateCitySearch, setUpdateCitySearch] = useState('');
-  const [updateStateSearch, setUpdateStateSearch] = useState('');
+  const [zipcode, setZipcode] = useState('68506');
+  const [updateZipcode, setUpdateZipcode] = useState('');
 
+  // https://api.openweathermap.org/data/2.5/weather?zip={zip code},{country code}&appid={API key}
+  // https://api.openweathermap.org/data/2.5/weather?zip=68506,us&appid=KEY
 
-  const weatherDataLink = `http://api.weatherstack.com/forecast?access_key=${accessKey}&query=${city},${state}&units=f`
+  const weatherDataLink = `https://api.openweathermap.org/data/2.5/weather?zip=${zipcode},us&appid=${accessKey}`;
 
   useEffect(() => {
-    getWeatherData()
+    getWeatherData();
   }, [])
 
   const getWeatherData = async () => {
-    console.log(weatherDataLink)
-    const response = await fetch(weatherDataLink)
-    const data = await response.json()
-    setCurrentWeather(data.current)
+    const response = await fetch(weatherDataLink);
+    const data = await response;
+    setCurrentWeather(data);
   }
 
-  const updateCitySearchInput = e => {
-    setUpdateCitySearch(e.target.value)
-  }
-
-  const updateStateSearchInput = e => {
-    setUpdateStateSearch(e.target.value)
+  const updateZipcodeSearchInput = e => {
+    setUpdateZipcode(e.target.value)
   }
 
   const newSearch = e => {
     e.preventDefault()
-    setCity(updateCitySearch)
-    setState(updateStateSearch)
+    setZipcode(updateZipcodeSearchInput)
     getWeatherData()
   }
-
 
   return (
     <div className="App">
@@ -50,13 +43,8 @@ function App() {
             <input
               className="search-input"
               type="text"
-              onChange={updateCitySearchInput}
-              placeholder="Enter a city, e.g. Chicago" />
-            <input
-              className="search-input"
-              type="text"
-              onChange={updateStateSearchInput}
-              placeholder="Enter a state, e.g. Illinois" />
+              onChange={updateZipcodeSearchInput}
+              placeholder="Enter a Zipcode" />
             <br />
             <button
               className="search-btn"
@@ -66,7 +54,7 @@ function App() {
             </button>
           </form>
         </div>
-        <CurrentWeather city={city} state={state} currentWeather={currentWeather} />
+        <CurrentWeather zipcode={zipcode} currentWeather={currentWeather} />
       </main>
       <footer>
         <Footer />
@@ -74,13 +62,6 @@ function App() {
     </div>
   );
 }
-
-// https://weatherstack.com/documentation
-// forecast
-//http://api.weatherstack.com/forecast
-// ? access_key = YOUR_ACCESS_KEY
-// & query = New York
-// http://api.weatherstack.com/forecast?access_key=1d87575377207dd950a67f434e01e23c&query=Lincoln,Nebraska&units=f
 
 export default App;
 
