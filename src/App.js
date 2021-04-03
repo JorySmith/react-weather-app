@@ -11,7 +11,7 @@ function App() {
   const [updateCitySearch, setUpdateCitySearch] = useState('');
   const [updateStateSearch, setUpdateStateSearch] = useState('');
 
-  const weatherDataLink = `http://api.weatherstack.com/forecast?access_key=${accessKey}&query=${city},${state}&units=f`
+  const weatherDataLink = `https://api.weatherstack.com/forecast?access_key=${accessKey}&query=${city},${state}&units=f`
 
   useEffect(() => {
     getWeatherData()
