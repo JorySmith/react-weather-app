@@ -4,7 +4,7 @@ import CurrentWeather from './components/CurrentWeather'
 import Footer from './components/Footer'
 
 function App() {
-  const accessKey = '1d87575377207dd950a67f434e01e23c';
+  const accessKey = process.env.REACT_APP_API_KEY;
   const [city, setCity] = useState('Lincoln');
   const [state, setState] = useState('Nebraska');
   const [currentWeather, setCurrentWeather] = useState([]);
@@ -20,7 +20,6 @@ function App() {
   const getWeatherData = async () => {
     const response = await fetch(weatherDataLink)
     const data = await response.json()
-    console.log(data)
     setCurrentWeather(data.current)
 
   }
