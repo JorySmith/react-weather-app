@@ -1,6 +1,6 @@
 # React Weather App
 
-A weather web application built with React.
+A React weather web application that displays current weather for any city such as temperature, precipitation, cloud cover, wind speed, etc.
 
 I apologize but this project will not support HTTPS GET requests without creators paying $10/month for access.
 
